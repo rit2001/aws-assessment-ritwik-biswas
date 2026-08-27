@@ -1,0 +1,18 @@
+{
+  "title": "Loyalty Rewards Program",
+  "company": "NorthStar Retail",
+  "sections": [
+    {
+      "heading": "Earning and Redeeming Points",
+      "text": "Members of the Rewards program earn 1 point for every 100 spent on eligible purchases. Once a member accumulates 100 points, those points can be redeemed for a discount voucher applied to a future order; points cannot be redeemed for cash or partial vouchers below the 100 point threshold."
+    },
+    {
+      "heading": "Expiry",
+      "text": "Points expire 18 months after they are earned if they remain unused. Redeeming even a small number of points does not reset the expiry clock on the remaining balance; each batch of earned points keeps its own 18 month expiry window from when it was earned."
+    },
+    {
+      "heading": "Combining With Other Offers",
+      "text": "Loyalty points can be combined with seasonal promotional pricing, letting a member stack a storewide discount with a points redemption. Points cannot be combined with clearance pricing, since clearance items are excluded from most stacking rules storewide."
+    }
+  ]
+}

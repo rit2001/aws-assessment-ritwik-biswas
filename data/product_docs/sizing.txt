@@ -1,0 +1,7 @@
+Apparel Sizing Guide (NorthStar Retail)
+
+NorthStar Retail apparel uses standard S, M, L, and XL sizing across the Apparel category. A size chart with chest and waist measurements in centimeters is available on each individual product page, since fit can vary slightly between styles even within the same size label.
+
+Most Apparel items run true to size when compared against the chart on the product page. Denim jackets are the one notable exception in the current catalog: they run approximately one size small compared to the rest of the Apparel line, so customers close to two sizes are generally advised to size up for a denim jacket specifically.
+
+A free size exchange is available once per order, within the same 30 day window that applies to standard returns. A second size exchange on the same order is treated as a standard return and new purchase instead.
