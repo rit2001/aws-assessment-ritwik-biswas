@@ -94,7 +94,7 @@ Profiling the supplied files found:
 - 35 negative quantities, no zero quantities, and no non-positive known prices.
 - For every SKU, each available product name, category, and unit price has exactly one distinct value, supporting conservative SKU-based imputations.
 - 5,003 rows remain after cleaning. The source date range ends on 2026-08-27.
-- Eight documents were found: four 20-page PDFs plus two JSON, one TXT, and one CSV document. Numbered PDF sections and structured records normalize to 826 attributable chunks.
+- Eight documents were found: four 20-page PDFs plus two JSON, one TXT, and one CSV document. Numbered PDF sections and structured records normalize to 745 attributable chunks; PDF sections continuing across page boundaries are joined during normalization.
 
 The raw and copied `sales.csv` SHA-256 is `7013fd6d7459296fa58bb0f3abda525d5d43da477035026729d0a51963af6a0f`.
 
