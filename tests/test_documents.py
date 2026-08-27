@@ -52,3 +52,24 @@ def test_warranty_pdf_retrieval_prefers_warranty_document():
     answer = generator().answer("What warranty applies to electronics?")
     assert "manufacturer warranty terms" in answer
     assert "Source: warranty.pdf" in answer
+
+
+def test_warranty_period_retrieval_prefers_coverage_section():
+    answer = generator().answer("How long is the warranty period for electronics?")
+    assert "12 month" in answer
+    assert "Source: warranty.pdf" in answer
+
+
+def test_support_contact_and_response_time_retrieval_combines_relevant_sections():
+    answer = generator().answer(
+        "How can I contact customer support and what response time should I expect?"
+    )
+    assert "chat" in answer.lower() or "email" in answer.lower()
+    assert "24 hours" in answer
+    assert "Source: support.pdf" in answer
+
+
+def test_unresolved_support_issue_retrieves_escalation_process():
+    answer = generator().answer("What support options are available for an unresolved issue?")
+    assert "supervisor review" in answer
+    assert "Source: support.pdf — 5. Escalation Process" in answer
