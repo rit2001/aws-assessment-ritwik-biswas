@@ -1,0 +1,18 @@
+{
+  "title": "Shipping and Delivery",
+  "company": "NorthStar Retail",
+  "sections": [
+    {
+      "heading": "Standard and Express Delivery",
+      "text": "Standard delivery takes 3 to 5 business days when the order ships within the same region as the delivery address, and 7 to 10 business days for a cross region order. Express delivery, when selected and paid for at checkout, arrives in 1 to 2 business days regardless of region."
+    },
+    {
+      "heading": "Delayed Packages",
+      "text": "If a standard delivery order arrives more than 3 days past its estimated delivery date, NorthStar Retail issues a shipping credit to the account automatically, without the customer needing to request one. Express orders that are delayed are handled case by case through support, since express delays are less common and usually tied to a specific carrier disruption."
+    },
+    {
+      "heading": "Order Tracking",
+      "text": "A tracking link is emailed once an order ships, usually within one business day of the order being placed. Tracking updates can lag the actual package location by several hours, particularly during the first leg of a cross region shipment."
+    }
+  ]
+}

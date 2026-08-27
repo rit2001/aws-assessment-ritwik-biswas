@@ -1,0 +1,2 @@
+# Supplied assessment inputs are immutable; preserve their bytes and line endings.
+data/** binary
