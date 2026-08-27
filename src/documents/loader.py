@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import json
 import re
+from collections import Counter
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
@@ -42,19 +43,42 @@ def _load_pdf(path: Path) -> list[DocumentChunk]:
     reader = PdfReader(path)
     if reader.metadata:
         title = reader.metadata.title
-    for page_number, page in enumerate(reader.pages, 1):
-        text = (page.extract_text() or "").strip()
+
+    page_texts = [(page.extract_text() or "").strip() for page in reader.pages]
+    first_lines = [text.splitlines()[0].strip() for text in page_texts if text]
+    repeated_headers = {line for line, count in Counter(first_lines).items() if count > 1}
+
+    for page_number, raw_text in enumerate(page_texts, 1):
+        lines = raw_text.splitlines()
+        if lines and lines[0].strip() in repeated_headers:
+            lines.pop(0)
+        lines = [line for line in lines if not re.fullmatch(r".*\bPage\s+\d+", line.strip())]
+        text = "\n".join(lines).strip()
         if not text:
             continue
         # Policy PDFs contain numbered headings. Smaller sections sharply reduce the
         # influence of repeated headers, definitions, and legal boilerplate.
         matches = list(re.finditer(r"(?m)^(\d+(?:\.\d+)*\.?)\s+([^\n]+)$", text))
         if not matches:
-            chunks.append(DocumentChunk(text, path.name, title=title, page=page_number))
+            if chunks and chunks[-1].section:
+                previous = chunks[-1]
+                chunks[-1] = DocumentChunk(
+                    f"{previous.text}\n{text}", previous.source, previous.title,
+                    previous.section, previous.page,
+                )
+            else:
+                chunks.append(DocumentChunk(text, path.name, title=title, page=page_number))
             continue
         prefix = text[:matches[0].start()].strip()
         if prefix:
-            chunks.append(DocumentChunk(prefix, path.name, title=title, page=page_number))
+            if chunks and chunks[-1].section:
+                previous = chunks[-1]
+                chunks[-1] = DocumentChunk(
+                    f"{previous.text}\n{prefix}", previous.source, previous.title,
+                    previous.section, previous.page,
+                )
+            else:
+                chunks.append(DocumentChunk(prefix, path.name, title=title, page=page_number))
         for index, match in enumerate(matches):
             end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
             section = f"{match.group(1)} {match.group(2).strip()}"
